@@ -45,6 +45,9 @@ invariant(
   `Could not find "build.options.outputPath" of project "${name}". Is project.json configured  correctly?`
 );
 
+// Execute "nx build" to build the library
+execSync(`nx build ${name}`);
+
 process.chdir(outputPath);
 
 // Updating the version in "package.json" before publishing
