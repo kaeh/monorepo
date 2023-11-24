@@ -1,4 +1,5 @@
 import { LogOperatorFn, logMessage, logMessageOperator } from "./functions";
+import { LoggerConfiguration } from "./logger-configuration";
 import { LogFn, LogLevel } from "./models";
 
 export class Logger {
@@ -18,6 +19,11 @@ export class Logger {
 
 		if (!this.uniqTag) {
 			throw new Error("uniqTag was nullish or blank but is required");
+		}
+
+		// Ensure that the logger persistence key is set
+		if (!localStorage.getItem(LoggerConfiguration.persistenceKey)) {
+			LoggerConfiguration.setLogLevel(LoggerConfiguration.getLogLevel());
 		}
 	}
 }
